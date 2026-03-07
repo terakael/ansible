@@ -2,7 +2,7 @@ server {
     listen {{ ttyd_nginx_port }};
 
     location /fonts/ {
-        alias {{ ansible_user_dir }}/.local/share/fonts/agave/;
+        alias /usr/share/fonts/agave/;
     }
 
     location / {

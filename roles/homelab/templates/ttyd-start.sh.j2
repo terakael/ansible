@@ -2,5 +2,5 @@
 exec /usr/bin/ttyd \
     --port {{ ttyd_port }} \
     --writable \
-    --font-family "AgaveNerdMono Nerd Font Mono" \
+    -t fontFamily="AgaveNerdMono Nerd Font Mono" \
     /bin/bash -l -c '/usr/bin/zellij attach -c remote'

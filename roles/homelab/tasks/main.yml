@@ -1,3 +1,10 @@
+- name: Symlink agave fonts to system location for nginx
+  file:
+    src: "{{ ansible_user_dir }}/.local/share/fonts/agave"
+    dest: /usr/share/fonts/agave
+    state: link
+  become: true
+
 - name: Install nginx
   community.general.pacman:
     name: nginx
