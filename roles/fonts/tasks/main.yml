@@ -1,0 +1,17 @@
+- name: Create Agave font directory
+  file:
+    path: "{{ ansible_user_dir }}/.local/share/fonts/agave"
+    state: directory
+    mode: '0755'
+
+- name: Download Agave Nerd Font
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Agave.zip
+    dest: "{{ ansible_user_dir }}/.local/share/fonts/agave/"
+    remote_src: true
+    creates: "{{ ansible_user_dir }}/.local/share/fonts/agave/AgaveNerdFont-Regular.ttf"
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Refresh font cache
+  command: fc-cache -f "{{ ansible_user_dir }}/.local/share/fonts"
+  changed_when: false

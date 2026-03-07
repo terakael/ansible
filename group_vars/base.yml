@@ -1,0 +1,14 @@
+base_packages:
+  - eza
+  - fzf
+  - neovim
+  - lazygit
+  - starship
+  - zoxide
+  - yazi
+  - zellij
+  - git
+  - unzip
+  - fontconfig
+
+extra_packages: []

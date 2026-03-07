@@ -1,0 +1,19 @@
+- name: Base configuration (all hosts)
+  hosts: all
+  gather_facts: true
+  roles:
+    - base
+    - fonts
+    - dotfiles
+
+- name: WSL (work) configuration
+  hosts: wsl
+  gather_facts: true
+  roles:
+    - wsl
+
+- name: Homelab configuration
+  hosts: homelab
+  gather_facts: true
+  roles:
+    - homelab
