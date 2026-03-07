@@ -4,6 +4,7 @@
     dest: "{{ dotfiles_dest }}"
     version: main
     update: false
+  register: dotfiles_clone
 
 - name: Ensure parent config directories exist
   file:
@@ -19,3 +20,15 @@
     state: link
     force: true
   loop: "{{ dotfiles_links }}"
+
+- name: Clear neovim lazy plugins dir for clean install
+  file:
+    path: "{{ ansible_user_dir }}/.local/share/nvim/lazy"
+    state: absent
+  when: dotfiles_clone.changed
+
+- name: Bootstrap neovim plugins
+  command: nvim --headless "+Lazy! restore" +qa
+  changed_when: false
+  timeout: 120
+  when: dotfiles_clone.changed
