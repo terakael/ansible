@@ -8,3 +8,30 @@
     name: "{{ base_packages + extra_packages }}"
     state: present
   become: true
+
+- name: Configure bash aliases
+  blockinfile:
+    path: "{{ ansible_user_dir }}/.bash_aliases"
+    create: true
+    marker: "# {mark} ANSIBLE MANAGED: aliases"
+    block: |
+      alias lg="lazygit $*"
+      alias l="eza --icons --color=always --long --all --no-user $*"
+      alias k="kubectl $*"
+      alias cd="z"
+      alias cat="bat $*"
+      alias vi="nvim $*"
+
+- name: Configure bashrc
+  blockinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    create: true
+    marker: "# {mark} ANSIBLE MANAGED: shell config"
+    block: |
+      set -o vi
+      eval "$(starship init bash)"
+      eval "$(fzf --bash)"
+      eval "$(zoxide init bash)"
+      export EDITOR="nvim"
+      export VISUAL="nvim"
+      [ -f ~/.bash_aliases ] && source ~/.bash_aliases

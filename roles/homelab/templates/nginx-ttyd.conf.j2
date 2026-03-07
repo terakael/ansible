@@ -1,0 +1,26 @@
+server {
+    listen {{ ttyd_nginx_port }};
+
+    location /fonts/ {
+        alias {{ ansible_user_dir }}/.local/share/fonts/agave/;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:{{ ttyd_port }};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_read_timeout 43200s;
+
+        sub_filter '</head>' '
+            <style>
+                @font-face {
+                    font-family: "AgaveNerdMono Nerd Font Mono";
+                    src: url("/fonts/AgaveNerdFontMono-Regular.ttf");
+                }
+            </style>
+        </head>';
+        sub_filter_once on;
+    }
+}

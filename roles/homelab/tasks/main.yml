@@ -1,2 +1,53 @@
-# Homelab-specific tasks
-# e.g. opencode, k9s config, etc.
+- name: Install nginx
+  community.general.pacman:
+    name: nginx
+    state: present
+  become: true
+
+- name: Ensure nginx conf.d directory exists
+  file:
+    path: /etc/nginx/conf.d
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Enable conf.d includes in nginx.conf
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    regexp: '^\s*#?\s*include\s+/etc/nginx/conf\.d/\*\.conf;'
+    line: '    include /etc/nginx/conf.d/*.conf;'
+    insertafter: 'http \{'
+  become: true
+  notify: restart nginx
+
+- name: Deploy nginx ttyd config
+  template:
+    src: nginx-ttyd.conf.j2
+    dest: /etc/nginx/conf.d/ttyd.conf
+    mode: '0644'
+  become: true
+  notify: restart nginx
+
+- name: Deploy ttyd systemd service
+  template:
+    src: ttyd.service.j2
+    dest: /etc/systemd/system/ttyd.service
+    mode: '0644'
+  become: true
+  notify:
+    - reload systemd
+    - restart ttyd
+
+- name: Enable and start nginx
+  service:
+    name: nginx
+    state: started
+    enabled: true
+  become: true
+
+- name: Enable and start ttyd
+  service:
+    name: ttyd
+    state: started
+    enabled: true
+  become: true

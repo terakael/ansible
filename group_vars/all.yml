@@ -10,6 +10,8 @@ base_packages:
   - git
   - unzip
   - fontconfig
+  - bat
+  - kubectl
 
 extra_packages: []
 
