@@ -35,6 +35,13 @@
     enabled: true
   become: true
 
+- name: Deploy ttyd start script
+  template:
+    src: ttyd-start.sh.j2
+    dest: "{{ ansible_user_dir }}/.local/bin/ttyd-start.sh"
+    mode: '0755'
+  notify: restart ttyd
+
 - name: Ensure user systemd directory exists
   file:
     path: "{{ ansible_user_dir }}/.config/systemd/user"

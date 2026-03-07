@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/ttyd --port {{ ttyd_port }} --writable --font-family "AgaveNerdMono Nerd Font Mono" zellij attach -c remote
+ExecStart={{ ansible_user_dir }}/.local/bin/ttyd-start.sh
 Restart=on-failure
 
 [Install]
