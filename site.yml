@@ -7,10 +7,10 @@
     - dotfiles
 
 - name: WSL (work) configuration
-  hosts: wsl
+  hosts: work
   gather_facts: true
   roles:
-    - wsl
+    - work
 
 - name: Homelab configuration
   hosts: homelab

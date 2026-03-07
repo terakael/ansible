@@ -1,3 +1,18 @@
+base_packages:
+  - eza
+  - fzf
+  - neovim
+  - lazygit
+  - starship
+  - zoxide
+  - yazi
+  - zellij
+  - git
+  - unzip
+  - fontconfig
+
+extra_packages: []
+
 dotfiles_repo: https://github.com/terakael/dotfiles.git
 dotfiles_dest: "{{ ansible_user_dir }}/dotfiles"
 
