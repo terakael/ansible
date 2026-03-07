@@ -11,15 +11,24 @@ server {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_set_header Host $host;
+        proxy_set_header Accept-Encoding "";
         proxy_read_timeout 43200s;
 
+        gzip off;
         sub_filter '</head>' '
             <style>
                 @font-face {
                     font-family: "AgaveNerdMono Nerd Font Mono";
                     src: url("/fonts/AgaveNerdFontMono-Regular.ttf");
                 }
+                .font-preload {
+                    font-family: "AgaveNerdMono Nerd Font Mono";
+                    position: absolute;
+                    visibility: hidden;
+                    pointer-events: none;
+                }
             </style>
+            <div class="font-preload">.</div>
         </head>';
         sub_filter_once on;
     }
