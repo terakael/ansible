@@ -16,13 +16,10 @@ server {
 
         gzip off;
         sub_filter '</head>' '
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
             <style>
-                @font-face {
-                    font-family: "AgaveNerdMono Nerd Font Mono";
-                    src: url("/fonts/AgaveNerdFontMono-Regular.ttf");
-                }
                 .font-preload {
-                    font-family: "AgaveNerdMono Nerd Font Mono";
+                    font-family: "JetBrains Mono";
                     position: absolute;
                     visibility: hidden;
                     pointer-events: none;
