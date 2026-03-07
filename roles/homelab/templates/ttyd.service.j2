@@ -1,12 +1,11 @@
 [Unit]
-Description=ttyd - Share your terminal over the web
+Description=ttyd terminal web server
 After=network.target
 
 [Service]
 Type=simple
-User={{ ansible_user }}
-ExecStart=/usr/local/bin/ttyd --port {{ ttyd_port }} --font-family "AgaveNerdMono Nerd Font Mono" bash
+ExecStart=/usr/bin/ttyd --port {{ ttyd_port }} --writable --font-family "AgaveNerdMono Nerd Font Mono" zellij attach -c remote
 Restart=on-failure
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

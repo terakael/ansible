@@ -4,13 +4,13 @@
     state: restarted
   become: true
 
-- name: reload systemd
+- name: reload user systemd
   systemd:
     daemon_reload: true
-  become: true
+    scope: user
 
 - name: restart ttyd
-  service:
+  systemd:
     name: ttyd
     state: restarted
-  become: true
+    scope: user
