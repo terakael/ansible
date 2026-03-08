@@ -16,14 +16,10 @@ server {
 
         gzip off;
         sub_filter '</head>' '
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
             <script>
-                window.addEventListener("load", function() {
-                    document.fonts.load("1em \"JetBrains Mono\"").then(function() {
-                        window.dispatchEvent(new Event("resize"));
-                        setTimeout(function() { window.dispatchEvent(new Event("resize")); }, 500);
-                    });
-                });
+                document.addEventListener("keydown", function(e) {
+                    if (e.ctrlKey && e.key === "w") { e.preventDefault(); }
+                }, true);
             </script>
         </head>';
         sub_filter_once on;
