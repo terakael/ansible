@@ -17,6 +17,7 @@ base_packages:
   - postgresql
   - nodejs
   - npm
+  - btop
 
 extra_packages: []
 
@@ -34,3 +35,5 @@ dotfiles_links:
     dest: "{{ ansible_user_dir }}/.config/k9s"
   - src: "{{ ansible_user_dir }}/dotfiles/zellij"
     dest: "{{ ansible_user_dir }}/.config/zellij"
+  - src: "{{ ansible_user_dir }}/dotfiles/btop"
+    dest: "{{ ansible_user_dir }}/.config/btop"
