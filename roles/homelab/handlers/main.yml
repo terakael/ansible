@@ -1,9 +1,3 @@
-- name: restart nginx
-  service:
-    name: nginx
-    state: restarted
-  become: true
-
 - name: reload user systemd
   systemd:
     daemon_reload: true

@@ -1,6 +1,4 @@
 extra_packages:
-  - nginx
   - ttyd
 
 ttyd_port: 7681
-ttyd_nginx_port: 7680

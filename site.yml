@@ -3,7 +3,6 @@
   gather_facts: true
   roles:
     - base
-    - fonts
     - dotfiles
 
 - name: WSL (work) configuration

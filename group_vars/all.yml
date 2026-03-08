@@ -9,10 +9,10 @@ base_packages:
   - zellij
   - git
   - unzip
-  - fontconfig
   - bat
   - kubectl
   - git-delta
+  - ripgrep
   - postgresql
   - nodejs
   - npm
