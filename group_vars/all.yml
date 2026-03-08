@@ -12,6 +12,9 @@ base_packages:
   - fontconfig
   - bat
   - kubectl
+  - git-delta
+  - nodejs
+  - npm
 
 extra_packages: []
 
