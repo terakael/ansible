@@ -1,3 +1,17 @@
+- name: Deploy terminal theme
+  copy:
+    src: terminal-theme.sh
+    dest: "{{ ansible_user_dir }}/.config/terminal-theme.sh"
+    mode: '0644'
+
+- name: Source terminal theme from bashrc
+  blockinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    create: true
+    marker: "# {mark} ANSIBLE MANAGED: homelab config"
+    block: |
+      source ~/.config/terminal-theme.sh
+
 - name: Deploy ttyd-agave binary
   copy:
     src: ttyd-agave
