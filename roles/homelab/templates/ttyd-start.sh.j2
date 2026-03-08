@@ -1,6 +1,6 @@
 #!/bin/bash
-exec /usr/bin/ttyd \
+exec /usr/local/bin/ttyd-agave \
     --port {{ ttyd_port }} \
     --writable \
-    -t fontFamily="JetBrains Mono" \
+    -t fontFamily="Agave" \
     /bin/bash -l -c '/usr/bin/zellij attach -c remote'

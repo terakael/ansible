@@ -17,15 +17,14 @@ server {
         gzip off;
         sub_filter '</head>' '
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
-            <style>
-                .font-preload {
-                    font-family: "JetBrains Mono";
-                    position: absolute;
-                    visibility: hidden;
-                    pointer-events: none;
-                }
-            </style>
-            <div class="font-preload">.</div>
+            <script>
+                window.addEventListener("load", function() {
+                    document.fonts.load("1em \"JetBrains Mono\"").then(function() {
+                        window.dispatchEvent(new Event("resize"));
+                        setTimeout(function() { window.dispatchEvent(new Event("resize")); }, 500);
+                    });
+                });
+            </script>
         </head>';
         sub_filter_once on;
     }

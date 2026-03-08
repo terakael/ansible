@@ -35,6 +35,14 @@
     enabled: true
   become: true
 
+- name: Deploy ttyd-agave binary
+  copy:
+    src: ttyd-agave
+    dest: /usr/local/bin/ttyd-agave
+    mode: '0755'
+  become: true
+  notify: restart ttyd
+
 - name: Deploy ttyd start script
   template:
     src: ttyd-start.sh.j2
