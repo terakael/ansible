@@ -3,4 +3,5 @@ exec /usr/local/bin/ttyd-agave \
     --port {{ ttyd_port }} \
     --writable \
     -t fontFamily="Agave" \
+    -t scrollback=0 \
     /bin/bash -l -c '/usr/bin/zellij attach -c remote'
