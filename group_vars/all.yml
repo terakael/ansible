@@ -37,3 +37,5 @@ dotfiles_links:
     dest: "{{ ansible_user_dir }}/.config/zellij"
   - src: "{{ ansible_user_dir }}/dotfiles/btop"
     dest: "{{ ansible_user_dir }}/.config/btop"
+  - src: "{{ ansible_user_dir }}/dotfiles/bin/nvim-osc52"
+    dest: "{{ ansible_user_dir }}/.local/bin/nvim-osc52"
