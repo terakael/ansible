@@ -4,6 +4,7 @@
   roles:
     - base
     - dotfiles
+    - rust
 
 - name: WSL (work) configuration
   hosts: work

@@ -1,0 +1,23 @@
+---
+- name: Install rustup
+  community.general.pacman:
+    name: rustup
+    state: present
+  become: true
+
+- name: Install stable toolchain and set as default
+  command: rustup default stable
+  args:
+    creates: "{{ ansible_user_dir }}/.rustup/toolchains"
+
+- name: Install rust-analyzer component
+  command: rustup component add rust-analyzer
+  changed_when: false
+
+- name: Add cargo bin to PATH
+  blockinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED - cargo PATH"
+    block: |
+      export PATH="$HOME/.cargo/bin:$PATH"
+    create: true
