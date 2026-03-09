@@ -21,3 +21,20 @@
     block: |
       export PATH="$HOME/.cargo/bin:$PATH"
     create: true
+
+- name: Create cargo target directory on churn drive
+  file:
+    path: "{{ cargo_target_dir }}"
+    state: directory
+    mode: "0755"
+  when: cargo_target_dir is defined
+
+- name: Configure cargo to use churn drive for build artifacts
+  blockinfile:
+    path: "{{ ansible_user_dir }}/.cargo/config.toml"
+    marker: "# {mark} ANSIBLE MANAGED - cargo target dir"
+    block: |
+      [build]
+      target-dir = "{{ cargo_target_dir }}"
+    create: true
+  when: cargo_target_dir is defined
